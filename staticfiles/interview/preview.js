@@ -1,6 +1,21 @@
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 
+$("#start_interview_btn").click(function () {
+
+    var temp = $("#interview_proceed").val();
+    console.log("temp :: ", temp)
+    if (temp == "checked") {
+        window.location = "/";
+    } else {
+        console.log("Please accept terms and conditions !");
+        alert("Please accept terms and conditions !");
+    }
+
+});
+
+
+
 // Get access to the camera!
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now

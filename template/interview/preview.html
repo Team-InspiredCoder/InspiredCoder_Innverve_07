@@ -14,31 +14,31 @@
 
 <body>
   <div class="container-fluid d-flex flex-column justify-content-around align-items-center mt-5 preview">
-    <video style="border-radius: 15px; border: 1px solid #473764" ; id="video" width="640" height="480"
-      autoplay></video>
-    <div class="main d-flex justify-content-center align-items-center mt-3">
-      <input class="mx-2" type="checkbox" name="myCheckbox" value="1" />
+    <video style="object-fit:cover; border-radius: 15px; border: 1px solid #473764;" id="video"
+      width="700 !important" height="410" autoplay></video>
+    <div class="main d-flex justify-content-center align-items-center mt-2">
+      <input id="interview_proceed" class="mx-2" type="checkbox" name="myCheckbox" value="checked" />
       <p class="para mt-3">
         I have read all the instructions and agree to all conditions
       </p>
     </div>
     <div class="btns d-flex justify-content-between">
       <div class="onoff">
-        <button type="submit" id="custom-btn" class="btn btn-primary px-3 py-2 custom-btn">
+        <button type="button" id="mic_btn" class="btn btn-primary px-3 py-2 custom-btn">
           <a style="text-decoration: none; color: white" href="#">
-            <img src="/static/assets/Microphone.png" alt="" />
+            <img src="/static/assets/microphone.png" alt="" />
           </a>
         </button>
-        <button type="submit" id="custom-btn" class="btn btn-primary custom-btn">
+        <button type="button" id="camera_btn" class="btn btn-primary custom-btn">
           <a style="text-decoration: none; color: white" href="#">
-            <img src="/static/assets/CompactCamera.png" alt="" />
+            <img src="/static/assets/camera.png" alt="" />
           </a>
         </button>
       </div>
-      <button type="submit" id="custom-btn" class="btn btn-primary custom-btn">
-        <a style="text-decoration: none; color: white" href="#">
-          Start interview
-        </a>
+      <button type="button" id="start_interview_btn" class="btn btn-primary custom-btn">
+        Start interview
+        <!-- <a style="text-decoration: none; color: white" href="#">
+        </a> -->
       </button>
     </div>
   </div>

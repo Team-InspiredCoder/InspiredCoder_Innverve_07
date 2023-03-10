@@ -29,6 +29,18 @@ window.onload = function() {
 	document.addEventListener("scroll", addActive);
 }
 
+
+var is_logged_in = localStorage.getItem("isUserLoggedIn");
+
+if (is_logged_in) {
+	console.log("User logged in !");
+	$(".login").css('visibility', 'hidden')
+	// $(".login").hide();
+}
+
+
+
+
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector("nav");
 
