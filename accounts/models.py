@@ -54,7 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     mobile_number = models.CharField(max_length=20, blank=True, null=True)
     about = models.TextField(max_length=3000, blank=True, null=True)
     profile_picture = models.CharField(max_length=256, blank=True, null=True)
-    occupation = models.CharField(max_length=32, blank=True, null=True)
+    occupation = models.CharField(max_length=200, blank=True, null=True)
     gender = models.CharField(max_length=8, blank=True, null=True)
 
     # conditional fields
