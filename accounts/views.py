@@ -129,7 +129,7 @@ class Login(APIView):
             coin_queryset = Coins.objects.filter(user=user)
             print(coin_queryset)
             print("len:",len(coin_queryset))
-            if len(coin_queryset)<0:
+            if len(coin_queryset)<=0:
                 new_coin = Coins.objects.create(user=user, value=10, expire_date=datetime.now())
                 new_coin.save()
                 print("In if")
