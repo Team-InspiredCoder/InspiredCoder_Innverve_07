@@ -86,7 +86,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class UserVerification(models.Model):
     email = models.CharField(max_length=70, blank=True, null=True)
     otp = models.CharField(max_length=10, blank=True, null=True)
-    token = models.CharField(unique=True, max_length=32, blank=True, null=True)
+    token = models.CharField(unique=True, max_length=200, blank=True, null=True)
     # action => signup | forgotPasword | twoStepAuth | login 
     action = models.CharField(max_length=50, blank=True, null=True)
     otp_expire_on = models.DateTimeField(null=True, blank=True)
