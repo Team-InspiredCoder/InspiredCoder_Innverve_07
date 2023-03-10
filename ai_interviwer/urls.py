@@ -31,7 +31,8 @@ urlpatterns = [
 
     # apis
     path('api/v1/accounts/', include('accounts.urls')),
-    
+    path('api/v1/interview/', include('interview.urls')),
+
     # auth token urls
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
