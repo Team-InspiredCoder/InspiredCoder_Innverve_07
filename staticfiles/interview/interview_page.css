@@ -1,0 +1,263 @@
+.popup{
+    position: absolute;
+    box-shadow: 5px 5px 5px grey;
+    justify-content: center;
+    z-index: 10;
+    margin: 13.4% 20% 20% 20%;
+    padding: 10px;
+    background-color:white;
+    border: 2px solid rgb(0, 153, 255);
+    border-radius: 7px;
+    align-items: center;
+    display: flex;
+    max-height: 150px;
+    max-width: 40%;
+    min-height: 130px;
+    min-width: 35%;
+    color: rgb(0, 255, 42);
+}
+.main_popup{
+
+    visibility: hidden;
+    z-index: 10;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 30%;
+    margin-top: 10px;
+    padding: 5%;
+    position: absolute;
+
+}
+
+#return_home,#return_home_1{
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+#final_icon_div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+
+
+
+}
+#Timer{
+    position: absolute;
+    right: 1%;
+    top:3%;
+    color: white;
+    border: 2px solid black;
+    padding: 3px 7px 3px 7px;
+    border-radius: 5px;
+    background-color: gray;
+    min-width: 60px;
+    min-height: 35px;
+    max-width: 80px;
+    max-height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+
+}
+
+#caption_div{
+
+    position:absolute;
+    bottom: 9%;
+    text-align: center;
+    padding: 30px 400px 50px 400px;
+    color: white;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    z-index: 10;
+}
+#invisible_button{
+    position:absolute;
+    right:15px;
+    bottom:15px;
+    background-color:white;
+    color:#101010;
+    opacity:0;
+}
+
+
+body {
+    background-color: #202124;
+    overflow: hidden;
+}
+
+.main, .start_meet_div, .close_meet_div{
+    height: 100vh;
+    width: 100vw;
+    background-color:#202124;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+
+.video_div, #MainVideo {
+    background-color: #303030;
+
+    justify-content: center;
+    height: 85%;
+    width: 82%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border: 5px solid blue;
+    border-radius: 40px;
+    padding: 1px;
+    object-fit: fill;
+}
+
+.buttons_div {
+    justify-content: center;
+    height: 15%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    background-color: #101010;
+    margin-top: 10px;
+}
+
+.camera_div, #web_cam, #video_element, #canvas{
+    position: absolute;
+
+    right: 10%;
+    bottom: 15%;
+    border: 3px solid white;
+    height: 170px;
+    width: 250px;
+    border-radius: 25px;
+    z-index: 10;
+    background-color: #101010;
+    object-fit: unset;
+}
+
+#video_element{
+    display: none;
+}
+
+.material-icons {
+    background-color: #282828;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 30px;
+    color: white;
+    margin-left: 12px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+#end_meet_btn {
+    background-color: green;
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    vertical-align: middle;
+}
+
+#end_meet_btn:hover {
+    background-color: #ff0000;
+}
+
+.material-icons:hover {
+    background-color: #484848;
+}
+
+.start_meet, .close_meet{
+    margin: 5% ;
+    padding: 5%;
+    border: 3px solid black;
+    background-color: #303030;
+    justify-content: center;
+    height: 85%;
+    width: 70%;
+    border-radius: 40px;
+    text-align: center;
+
+}
+
+.start_btn, .close_btn,.Download_class,.start_btn_load{
+    border: 2px solid red;
+    text-align: center;
+    height: 20%;
+    width: 30%;
+    border-radius: 10px;
+    background-color: aquamarine;
+}
+
+.Download_class{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding: left 20px; ;
+}
+
+.start_btn:hover {
+    background-color: #e97770;
+}
+
+.close_btn:hover{
+    background-color: #e97770;
+}
+.Download_class:hover{
+    background-color: #e97770;
+}
+
+.instructions_lines {
+    color: white;
+    font-size: larger;
+    font-weight: 500;
+    margin-top: 0%;
+}
+
+#permission_denied {
+    font-size: larger;
+    color: white;
+    margin-top: 9%;
+    padding: 3%;
+    font-weight: 400;
+}
+
+
+button {
+    padding:10px;
+    background-color:#6a67ce;
+    color: #FFFFFF;
+    border: 0px;
+    cursor:pointer;
+    border-radius: 5px;
+}
+
+#output {
+    background-color:#F9F9F9;
+    padding:10px;
+    width: 100%;
+    margin-top:20px;
+    line-height:30px;
+}
+.hide {
+    display:none;
+}
+.show {
+    display:block;
+}
+
+

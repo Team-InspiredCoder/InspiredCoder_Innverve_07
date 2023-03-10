@@ -36,10 +36,14 @@ def emailVerified(request):
     return render(request, 'user_verification/activate.html')
 
 
-
 def interviewPreview(request):
 
     return render(request, 'interview/preview.html')
+
+
+def interviewScreen(request):
+
+    return render(request, 'interview/interview_page.html')
 
 
 

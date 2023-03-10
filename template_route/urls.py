@@ -9,8 +9,9 @@ urlpatterns = [
     path('register', register, name="register"),
     path('login', login, name="login"),
     path('verify-email/<str:action>/<str:email>/<str:name>', verifyEmail, name="verify-email"),
-
     path('email-verified', emailVerified, name="email-verified"),
+
     path('interview-preview', interviewPreview, name="interview-preview"),
+    path('interview-screen', interviewScreen, name="interview-screen"),
 ]
 

@@ -67,7 +67,7 @@ def createUserVerificationToken(email, action):
 
 
 def test(request):
-    return render(request, 'speech_test.html')
+    return render(request, 'temp_video.html')
 
 
 def verifyLink(request, token):

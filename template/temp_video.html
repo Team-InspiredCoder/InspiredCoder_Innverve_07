@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span><a id="download_Video_of_Interview"><br><br><button type="button" class="Download_class" href=""> <b> Download
+                    Videos </b></button></a></span>
+    <video id="web_cam" autoplay="" height="100%" width="100%" muted="" style="visibility:visible;"></video>
+    <canvas id="canvas" width="600px" height="400px" style="visibility: hidden;"></canvas>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+    let video = document.getElementById("video_element");
+    let model;
+    let canvas = document.getElementById("canvas")
+    let ctx = canvas.getContext("2d")
+    let cls_cam;
+    let shouldStop = false;
+    function closing_camera() {
+        shouldStop = true;
+        const video = document.getElementById('web_cam');
+
+        const mediaStream = video.srcObject;
+        const tracks = mediaStream.getTracks();
+
+        // Tracks are returned as an array, so if you know you only have one, you can stop it with:
+        tracks[0].stop();
+    
+        // Or stop all like so:
+        tracks.forEach(track => track.stop())
+
+
+        cls_cam.stop();
+
+    }
+
+
+
+
+
+    const setupCamera = () => {
+        navigator.mediaDevices
+            .getUserMedia({
+                video: { width: 600, height: 400 },
+                audio: false,
+            })
+            .then((stream) => {
+                video.srcObject = stream;
+            });
+    };
+
+
+    const videoElement = document.getElementById('web_cam');
+    const parts2 = [];
+
+    async function recordVideo() {
+
+        const mimeType = 'video/webm';
+        shouldStop = false;
+        const constraints = {
+            video: {
+                "width": {
+                    "min": 640,
+                    "max": 1024
+                },
+                "height": {
+                    "min": 480,
+                    "max": 768
+                }
+            }
+        };
+
+
+
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        videoElement.srcObject = stream;
+        handleRecord({ stream, mimeType })
+
+
+
+
+
+
+        //setTimeout(recordScreen, 1000);
+    }
+    async function recordScreen() {
+        console.log("In recordScreen function!!");
+
+        const mimeType = 'video/webm';
+        shouldStop = false;
+        const constraints = {
+            video: {
+                cursor: 'motion'
+            }
+        };
+        if (!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia)) {
+            return window.alert('Screen Record not supported!')
+        }
+        let stream = null;
+        console.log("Ask  Screen Permission...")
+        const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: { cursor: "motion" }, audio: { 'echoCancellation': true } });
+        if (1) {
+            const audioContext = new AudioContext();
+
+            const voiceStream = await navigator.mediaDevices.getUserMedia({ audio: { 'echoCancellation': true }, video: false });
+            const userAudio = audioContext.createMediaStreamSource(voiceStream);
+
+            const audioDestination = audioContext.createMediaStreamDestination();
+            userAudio.connect(audioDestination);
+
+            if (displayStream.getAudioTracks().length > 0) {
+                const displayAudio = audioContext.createMediaStreamSource(displayStream);
+                displayAudio.connect(audioDestination);
+            }
+
+            const tracks = [...displayStream.getVideoTracks(), ...
+                audioDestination.stream.getTracks()]
+            stream = new MediaStream(tracks);
+            handleRecord({ stream, mimeType })
+        } else {
+            stream = displayStream;
+            handleRecord({ stream, mimeType });
+        };
+
+
+        // main_fun()
+
+    }
+
+    const handleRecord = function ({ stream, mimeType }) {
+        // startRecord()
+        console.log("In handle Record!!");
+        let recordedChunks = [];
+        stopped = false;
+        const mediaRecorder = new MediaRecorder(stream);
+        cls_cam = mediaRecorder;
+
+        mediaRecorder.ondataavailable = function (e) {
+            if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+            }
+
+            if (shouldStop === true && stopped === false) {
+                mediaRecorder.stop();
+                stopped = true;
+            }
+        };
+
+        mediaRecorder.onstop = function () {
+            console.log("In On Stop Of screen Sharing!!")
+            const blob = new Blob(recordedChunks, {
+                type: mimeType
+            });
+            recordedChunks = []
+            const filename = "InterviewVideo"
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = `${filename || 'recording'}.webm`;
+            //   stopRecord();
+            videoElement.srcObject = null;
+        };
+
+        mediaRecorder.start(200);
+    };
+
+
+    function check_face_probability(face_probability) {
+        face_probability = face_probability * 100
+
+        var btn_status = $("#camera_btn").text();
+        btn_status = "videocam"
+        if (btn_status == "videocam") {
+
+            if (face_probability < 80) {
+                console.log("You are not visibile on Camera Please check your face position otherwise your interview will be terminated");
+            }
+            else if (face_probability < 95) {
+                console.log("You are not properly visible either adjust your camera or change your position");
+            }
+            else {
+                console.log("Good Position")
+            }
+        }
+        else {
+            console.log("Camera is closed")
+        }
+
+    }
+
+    Web_Cam_fun()
+    recordScreen()
+    function Web_Cam_fun() {
+
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+
+            videoElement.srcObject = stream;
+
+            MediaRecorder_new = new MediaRecorder(stream);
+            MediaRecorder_new.start(1000);
+            MediaRecorder_new.ondataavailable = function (e) {
+                parts2.push(e.data);
+            }
+
+
+        });
+    }
+
+    const downloadLink = document.getElementById('download_Video_of_Interview');
+    document.getElementById("download_Video_of_Interview").onclick = function () {
+        shouldStop = true;
+        closing_camera();
+        MediaRecorder_new.stop();
+        const blob_new = new Blob(parts2, {
+            type: "video/webm"
+        })
+        const url_new = URL.createObjectURL(blob_new);
+        const a_new = document.createElement("a");
+        document.body.appendChild(a_new);
+        a_new.href = url_new;
+        a_new.download = "Video.webm";
+        a_new.click();
+
+
+
+
+    }
+
+    const detectFaces = async () => {
+
+        const prediction = await model.estimateFaces(videoElement, false);
+
+        try {
+
+            face_probability = prediction[0].probability;
+            check_face_probability(face_probability)
+            console.log(face_probability * 100)
+
+        }
+        catch (error) {
+
+            var btn_status = $("#camera_btn").text();
+            btn_status = "videocam"
+            error_counter = 0
+            can_display_popup = false
+
+            if (btn_status == "videocam") {
+                if (error.name == "TypeError") {
+                    var aud = document.getElementById("myAudio");
+
+                    if (error_counter >= 3 && can_display_popup) {
+                        //alert(error_counter)
+                        //$("#myAudio").attr("loop")
+
+                        console.log("Your Video is terminating")
+
+                    }
+                    else {
+
+                        // showFacepopup("Your are not visible at all");
+                        console.log("You are not visible t all")
+                    }
+                    if (can_display_popup) {
+                        error_counter = error_counter + 1
+                        console.log("Error_Counter:", error_counter)
+                        console.log("can_display_popup val:", can_display_popup)
+                    }
+                    console.log(error_counter)
+                }
+            }
+            else {
+                console.log("Camera is closed in Catch block")
+            }
+        }
+
+        ctx.drawImage(videoElement, 0, 0, 600, 400);
+        prediction.forEach((pred) => {
+            ctx.beginPath();
+            ctx.lineWidth = "4";
+            ctx.strokeStyle = "blue"
+            ctx.rect(
+                pred.topLeft[0],
+                pred.topLeft[1],
+                pred.bottomRight[0] - pred.topLeft[0],
+                pred.bottomRight[1] - pred.topLeft[1]
+
+            );
+            //ctx.stroke();
+
+
+        });
+    };
+
+
+
+    videoElement.addEventListener("loadeddata", async () => {
+        console.log("InloadedData Listener")
+
+        model = await blazeface.load();
+        setInterval(detectFaces, 5000)
+    });
+</script>
+
+</html>
