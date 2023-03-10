@@ -9,6 +9,7 @@ from django.http import HttpResponse
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from gamification.models import Coins
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -18,6 +19,9 @@ from accounts.serializer import *
 
 import random
 import uuid
+
+
+from gamification.coins import getCoin
 
 # global function here
 
@@ -116,12 +120,29 @@ class Login(APIView):
         print("rd :: ", rd)
 
         user = auth.authenticate(email=rd['email'], password=rd['password'])
-
+        print("user:",user)
         if user is not None:
 
-            print("user :: ", user)
             if not user.is_verified:
                 return Response({"success": False, "error": False, "message": "Email is not verified. Please verify Email and try Again !"})
+
+            coin_queryset = Coins.objects.filter(user=user)
+            print(coin_queryset)
+            print("len:",len(coin_queryset))
+            if len(coin_queryset)<0:
+                new_coin = Coins.objects.create(user=user, value=10, expire_date=datetime.now())
+                new_coin.save()
+                print("In if")
+            else:
+                coin_model_obj = coin_queryset.last()
+                updated_coin_val = coin_model_obj.value + 5
+                print('updated_coin_val:',updated_coin_val)
+                coin_model_obj.value = updated_coin_val
+                coin_model_obj.save()
+                # pass
+
+            coin_data = getCoin(user)
+            print("coin_data",coin_data)
 
             token = RefreshToken.for_user(user)
             data = GetCustomUserSerializer(user).data
@@ -131,9 +152,11 @@ class Login(APIView):
                                 'type': 'Bearer',
                                 'access': str(token.access_token),
                                 'refresh': str(token),
+                                'coin_data':coin_data
                             }})
         else:
             return Response({"success": False, "error": False, "message": "Oppps! Creadentials does not matched!"})
+
 
 
 class VerifyUser(APIView):
