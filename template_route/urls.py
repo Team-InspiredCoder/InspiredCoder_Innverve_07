@@ -11,6 +11,6 @@ urlpatterns = [
     path('verify-email/<str:action>/<str:email>/<str:name>', verifyEmail, name="verify-email"),
 
     path('email-verified', emailVerified, name="email-verified"),
-
+    path('interview-preview', interviewPreview, name="interview-preview"),
 ]
 

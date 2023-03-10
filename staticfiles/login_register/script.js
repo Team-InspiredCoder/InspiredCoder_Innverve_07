@@ -22,9 +22,9 @@ $(document).ready(function () {
 
           setTimeout(() => {
             
-            // localStorage.removeItem("userData");
-            // localStorage.removeItem("authToken");
-            // localStorage.removeItem("isUserLoggedIn");
+            localStorage.setItem("userData", null);
+            localStorage.setItem("authToken", null);
+            localStorage.setItem("isUserLoggedIn", null);
   
             localStorage.setItem("userData", result.data);
             localStorage.setItem("authToken", result.authToken);

@@ -1,0 +1,16 @@
+a > img {
+    height: 20px;
+}
+.btns {
+    width: 80vh;
+}
+
+.onoff > button {
+    padding: 18px !important;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.custom-btn{
+    padding:  0px 40px !important;
+}
