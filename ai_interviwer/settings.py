@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'template_route',
     'interview',
+    'gamification'
 ]
 
 MIDDLEWARE = [
@@ -92,6 +93,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'ai_interviwer.wsgi.application'
 
 
@@ -109,12 +111,21 @@ WSGI_APPLICATION = 'ai_interviwer.wsgi.application'
 
 # custom db config
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ai_bot_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ds123',
+#         'HOST': 'localhost'
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ai_bot_db',
+        'NAME': 'innerve_ai_interviewer',
         'USER': 'postgres',
-        'PASSWORD': 'ds123',
+        'PASSWORD': 'pass',
         'HOST': 'localhost'
     }
 }
