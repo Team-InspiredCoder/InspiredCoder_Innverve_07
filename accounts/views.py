@@ -36,7 +36,7 @@ def sendOTPEmail(email, name, action):
     subject = f"Welcome to Interview.AI {name} !"
     msg = f"OTP :: {check_otp}"
     html_message = render_to_string('mail_template/signup.html', {"check_otp": check_otp, "check_url": url})
-    
+
     res = send_mail(subject, msg, settings.DEFAULT_FROM_EMAIL, [email, "siddhirajk77gmail.com"], html_message=html_message, fail_silently=False)
     print("res :: ", res)
 
@@ -71,7 +71,7 @@ def createUserVerificationToken(email, action):
 
 
 def test(request):
-    return render(request, 'speech_test.html')
+    return render(request, 'temp_video.html')
 
 
 def verifyLink(request, token):
@@ -99,8 +99,8 @@ class Register(APIView):
         if not sendOTPEmail(rd['email'], rd['fname'], "signup"):
             return Response({"success":False, "error": False, "message": "Email not sent !"})
 
-        new_user = CustomUser.objects.create_user(email=rd['email'], username=rd['email'], password=rd['password'], 
-                                                  first_name=rd['fname'], last_name=rd['lname'], mobile_number=rd['phone'], 
+        new_user = CustomUser.objects.create_user(email=rd['email'], username=rd['email'], password=rd['password'],
+                                                  first_name=rd['fname'], last_name=rd['lname'], mobile_number=rd['phone'],
                                                   gender=rd['gender'], occupation=rd['occupation'], profile_picture=rd['profile_picture'])
 
         data = {"email": rd['email'], "name": rd['fname'], "action": "signup"}
@@ -126,23 +126,29 @@ class Login(APIView):
             if not user.is_verified:
                 return Response({"success": False, "error": False, "message": "Email is not verified. Please verify Email and try Again !"})
 
-            coin_queryset = Coins.objects.filter(user=user)
-            print(coin_queryset)
-            print("len:",len(coin_queryset))
-            if len(coin_queryset)<=0:
-                new_coin = Coins.objects.create(user=user, value=10, expire_date=datetime.now())
-                new_coin.save()
-                print("In if")
-            else:
-                coin_model_obj = coin_queryset.last()
-                updated_coin_val = coin_model_obj.value + 5
-                print('updated_coin_val:',updated_coin_val)
-                coin_model_obj.value = updated_coin_val
-                coin_model_obj.save()
-                # pass
+            # pankaj
+            coin_data = None
+            try:
+                coin_queryset = Coins.objects.filter(user=user)
+                print(coin_queryset)
+                print("len:",len(coin_queryset))
+                if len(coin_queryset)<0:
+                    new_coin = Coins.objects.create(user=user, value=10, expire_date=datetime.now())
+                    new_coin.save()
+                    print("In if")
+                else:
+                    coin_model_obj = coin_queryset.last()
+                    updated_coin_val = coin_model_obj.value + 5
+                    print('updated_coin_val:',updated_coin_val)
+                    coin_model_obj.value = updated_coin_val
+                    coin_model_obj.save()
+                    # pass
 
-            coin_data = getCoin(user)
-            print("coin_data",coin_data)
+                coin_data = getCoin(user)
+                print("coin_data",coin_data)
+
+            except Exception as err:
+                print("Error :: ", err)
 
             token = RefreshToken.for_user(user)
             data = GetCustomUserSerializer(user).data
@@ -166,7 +172,7 @@ class VerifyUser(APIView):
 
         rd = request.data
         print("rd :: ", rd)
-        
+
         UserVerification.objects.filter(token_expire_on__lte=datetime.now()).delete()
         token_obj = None
 
@@ -176,9 +182,9 @@ class VerifyUser(APIView):
             token_obj = UserVerification.objects.filter(token=rd['token'], token_expire_on__gte=datetime.now()).first()
             rd['email'] = token_obj.email
             rd['action'] = token_obj.action
-        
+
         if token_obj != None and rd['action'] == "signup":
-            
+
             token_obj.delete()
             user = CustomUser.objects.filter(email=rd['email']).first()
             user.is_verified=True
@@ -194,7 +200,7 @@ class VerifyUser(APIView):
                                 'access': str(token.access_token),
                                 'refresh': str(token),
                             }})
-        
+
         else:
             return Response({"success": False, "error": False, "message": "OTP/Token does not matched!"})
 

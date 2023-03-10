@@ -35,7 +35,7 @@ var is_logged_in = localStorage.getItem("isUserLoggedIn");
 if (is_logged_in) {
 	console.log("User logged in !");
 	$(".login").css('visibility', 'hidden')
-	// $(".login").hide();
+	// $(".login").css("display", none);
 }
 
 

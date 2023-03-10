@@ -3,10 +3,10 @@ var video = document.getElementById('video');
 
 $("#start_interview_btn").click(function () {
 
-    var temp = $("#interview_proceed").val();
+    var temp = $("#interview_proceed:checked").val();
     console.log("temp :: ", temp)
     if (temp == "checked") {
-        window.location = "/";
+        window.location = "/interview-screen";
     } else {
         console.log("Please accept terms and conditions !");
         alert("Please accept terms and conditions !");

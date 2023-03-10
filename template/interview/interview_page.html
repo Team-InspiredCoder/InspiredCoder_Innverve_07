@@ -1,0 +1,185 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jfif' %}"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+   <!-- For Face Detection -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+
+    <link rel="stylesheet" href="/static/interview/interview_page.css" />
+
+    <title>Interview UI</title>
+
+</head>
+
+
+
+<body>
+
+<audio id="myAudio" loop >
+    <source src="#" type ="audio/mp3"></source>
+</audio>
+
+
+<div id="timer_div">
+<p id="Timer"></p>
+</div>
+
+    <div class="main_popup">
+        <div class="popup">
+            <span class="material-icons" style="color: red;">
+                warning
+                </span>
+            <h6 id="Error_Messgae"></h6>
+
+        </div>
+    </div>
+
+
+    {% csrf_token %}
+
+        <video id="web_cam" autoplay="" height="100%" width="100%" muted="" style="visibility:hidden;" ></video>
+
+        <div id="caption_div">
+            <h5 id="caption_text"></h5>
+        </div>
+
+    <div class="main">
+
+        <video width="100%" height="100%" id="MainVideo">
+            <source src="#" type="video/mp4">
+        </video>
+
+
+        <canvas id="canvas" width="600px" height="400px"></canvas>
+
+
+
+        <!-- <br> -->
+
+        <div class="buttons_div">
+            <span id="download_btn" class="material-icons" onclick="gotohome()">home</span>
+
+            <span id="mic_btn" class="material-icons" onclick="mic_toggle()">mic</span>
+            <span id="camera_btn" class="material-icons" onclick="camera_toggle()">videocam</span>
+            <span id="end_meet_btn" class="material-icons" onclick="end_call()">call</span>
+            <span id="caption_btn" class="material-icons" onclick="caption_toggle()">closed_caption</span>
+
+
+            <!-- <span id="more_options" class="material-icons" >more_vert</span> -->
+        </div>
+    </div>
+
+<!-- 
+    <div class="start_meet_div">
+
+        <div class="start_meet">
+
+            <p class="instructions_lines">Please grant all permissions for better experience ! <br> </p>
+            <p class="instructions_lines" style="font-weight: 300;">
+            Please read <a href="pp">Privacy Policy</a> & <a href="tc">Terms of Use</a>
+            </p>
+
+            <p class="instructions_lines"> <input id="agree_to_terms" type="checkbox">   I have read all the instructions and agree to all conditions.!</p>
+
+            <br>
+            <button class="start_btn" id="Start_Interivew_Id">
+            <b>Start Interview</b>
+            </button>
+            <style>
+                #start_int_load{
+                    height: 100%;
+
+                }
+
+            </style>
+            <button id="start_btn_id_load" style="text-align: center; color: white; background-color: black;" type="button" class="start_btn_load">
+                <video id="start_int_load" class="loading_video" loop muted autoplay>
+                    <source src="{% static 'videos/loading.mp4' %}" type="video/mp4">
+
+                </video>
+
+            </button>
+
+            <br><br><br>
+            <div id="return_home_1" style="margin-right: 20px;" onclick="gotohome()">
+                <span style="font-size: 40px;" id="download_btn" class="material-icons">home</span>
+            <h5 style="color: white;">Home</h5>
+            </div>
+
+            <div>
+                <p id="permission_denied"></p>
+            </div>
+
+        </div>
+
+    </div>
+ -->
+
+<!-- 
+    <div class="close_meet_div">
+
+        <div class="close_meet" id="Get_Report_Card">
+            <button class="close_btn">
+                <b>Get Report</b>
+            </button>
+            <div>
+                <span><a id="download_Video_of_Interview" ><br><br><button  type="button" class="Download_class" href=""> <b> Download Videos </b></button></a></span>
+
+            </div>
+           <br><br>
+        <div id="final_icon_div">
+
+            <div id="return_home" style="margin-right: 20px;" onclick="gotohome()">
+                <span style="font-size: 40px;" id="download_btn" class="material-icons">home</span>
+            <h5 style="color: white;">Home</h5>
+            </div>
+
+            <div id="restart_again" style="margin-left: 20px;"  onclick="restart_interview()">
+                <span style="font-size: 40px;" id="download_btn" class="material-icons">restart_alt</span>
+            <h5 style="color: white;">Start Again</h5>
+            </div>
+
+        </div>
+
+        </div>
+
+    </div>
+ -->
+
+
+
+
+
+<!-- scripts -->
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/static/interview/interview_page.js"></script>
+
+
+
+</body>
+
+
+</html>
