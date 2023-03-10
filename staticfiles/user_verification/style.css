@@ -1,0 +1,51 @@
+.otp-box {
+  /* height: 70px;
+  width: 70px; */
+  outline: 1px solid #8d7391 !important;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+/* OTP  */
+section {
+  /* background-color: rgba(122, 240, 255,0.8); */
+}
+
+.otp-input {
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0px;
+  font-size: 1.1rem;
+  padding: 5px;
+  outline: none !important;
+  font-weight: 600;
+  text-align: center;
+}
+input:active,
+input:focus {
+  text-align: center;
+  outline: 0px !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #0b2559 !important;
+  outline: none !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+#OTP_Div {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-gap: 20px;
+  padding: 5%;
+}

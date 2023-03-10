@@ -1,0 +1,70 @@
+*, html{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.sidebar {
+    width: 25%;
+    height: 96vh;
+}
+.main-c {
+    border-radius: 20px;
+    width: 75%;
+    height: 96vh;
+}
+
+.profile-box > img{
+    height: 150px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.content {
+    margin-left: 50px !important;
+    color: #707070;
+}
+
+.custom-m {
+    margin-left: 30px;
+    font-size: 16px;
+}
+.custom-btn {
+    border-radius: 50px !important;
+    padding: 12px 45px !important;
+}
+.outer-box {
+    height: 80vh;
+}
+
+.left-box {
+    width: 35% !important;
+    height: 100% !important;
+}
+
+.upper-section, .bottom-section {
+    border-radius: 15px;
+}
+.upper-section {
+    height: 30%;
+    margin-bottom: 20px;
+}
+.bottom-section {
+    height: 70%;
+}
+
+.rec{
+    height: 45px !important;
+    width: auto;
+}
+
+.h3-custom {
+    margin: 0px 30px;
+    margin-right: 80px;
+    font-size: 24px;
+}
+
+.right-box {
+    width: 65% !important;
+    height: auto;
+}
+

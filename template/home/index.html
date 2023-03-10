@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="static/home/style.css" />
+    <title>Interview.AI</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <!-- <h2>GLASSES</h2> -->
+            <img src="static/assets/logo.png" alt="" />
+        </div>
+        <nav>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Who Are We</a></li>
+            <li><a href="#feature">Features</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+        <div class="login">
+            <button class="l-btn">
+                <a href="/login">Login</a>
+            </button>
+            <button style="margin-left: 10px;" class="l-btn">
+                <a href="/register">Register</a>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Tracker -->
+    <div id="progress"></div>
+    <section class="page home" id="home">
+        <div class="container">
+            <h1 class="title">Welcome to <span>Interview.AI</span></h1>
+            <p class="desc">Artificial interviewer bot who takes actual interviews</p>
+            <img src="static/assets/ro.gif" alt="" />
+            <button class="start">Start Interview</button>
+        </div>
+    </section>
+    <section class="page about" id="about">
+        <div class="container">
+            <img class="about-img" src="static/assets/about_red.png" alt="" />
+            <div class="content">
+                <h1 class="title">Who Are <span> We ?</span></h1>
+                <p>
+                    This is first unique platform for candidate who willing to be place with
+                    more confidence. Our system based on AI , it's an AI bot who takes
+                    actual interviews. In our system , the candidate will not go through bot
+                    interviewer instead of it we use some advance technologies Where
+                    interviews will be taken by some of the high reputed personality of the
+                    associated domain, this will definitely help them psychologically . We
+                    use proctor which will capture all moments , gestures , posture and
+                    analyze it in backend and at the end it will give candidate report which
+                    include question wise confidence level
+                </p>
+            </div>
+    </section>
+    <section class="page features" id="feature">
+        <div class="container">
+            <h1 class="title f-title">Our <span>Features</span></h1>
+            <img src="static/assets/feature.png" alt="">
+            <div class="feat f1">Track on every previous performance report</div>
+            <div class="feat f2">Live interview Practice</div>
+            <div class="feat f3">Secure with data protectivity</div>
+            <div class="feat f4">Easy to use</div>
+            <div class="feat f5">Build confidence</div>
+            <div class="feat f6">Proctor Base</div>
+        </div>
+    </section>
+    <section class="page team" id="team">
+        <div class="container">
+            <h1 class="title">Our <span>Team</span></h1>
+            <div class="profile">
+                <div class="in">
+                    <div class="pic p1">
+                        <!-- <img src="assets/pankat.png" alt="" class="p-img"> -->
+                    </div>
+                    <h2>Pankaj Jaiswal</h2>
+                </div>
+                <div class="in">
+                    <div class="pic p2">
+                    </div>
+                    <h2>Siddhiraj Kolwankar</h2>
+                </div>
+                <div class="in">
+                    <div class="pic p3">
+                    </div>
+                    <h2>Dhanshree Patangrao</h2>
+                </div>
+                <div class="in">
+                    <div class="pic p4">
+                    </div>
+                    <h2>Nilesh Gawli</h2>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="page contact" id="contact">
+        <div class="container">
+            <h1 class="title">Contact <span>Us</span></h1>
+            <label class="contact-label" for="">Username</label>
+            <input class="contact-fields" type="text">
+            <label class="contact-label" for="">Email</label>
+            <input class="contact-fields" type="text">
+            <label class="contact-label" for="">Title</label>
+            <input class="contact-fields" type="text">
+            <label class="contact-label" for="">Message</label>
+            <input class="contact-fields msg" type="text">
+        </div>
+
+    </section>
+    <script src="static/home/script.js"></script>
+</body>
+
+</html>

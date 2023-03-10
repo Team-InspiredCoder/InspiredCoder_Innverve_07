@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/static/user_verification/style.css" />
+  <link rel="stylesheet" href="/static/login_register/style.css" />
+  <title>OTP</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">
+        <img src="/static/assets/logo.png" alt="" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- OTP Start -->
+
+  <div class="container-fluid d-flex flex-column justify-content-around align-items-center mt-5 otp">
+    <h2 class="display-7 mt-1">Hey {{name}} you may have received OTP on your Email</h2>
+    <p class="para mt-2">OTP sent to {{email}}. Please enter OTP here</p>
+    <section id="OTP_Section" class="container-fluid text-center" style="margin-top: 5%">
+      <div class="container text-center col-lg-3 col-sm-12 col-md-3 bg-white rounded-lg  class=" otp-box" p-3">
+        <div class="alert alert-danger" role="alert" style="display: none" id='alert_box'>
+          All fields are required!
+        </div>
+
+        <!-- hidden fields here -->
+        <input type="text" id="email" value="{{email}}" hidden>
+        <input type="text" id="action" value="{{action}}" hidden>
+
+        <div id="OTP_Div" class="col-lg-10 col-sm-12 col-md-10">
+          <input class="otp-box" style="background-color: rgba(122, 240, 255,0.1);" autofocus
+            class="form-control otp-input" onkeyup="alter_box(this.id)" maxlength="1" required type="number" id="o1" />
+          <input class="otp-box" style="background-color: rgba(122, 240, 255,0.1);" class="form-control otp-input"
+            required maxlength="1" type="number" id="o2" onkeyup="alter_box(this.id)" />
+          <input class="otp-box" style="background-color: rgba(122, 240, 255,0.1);" class="form-control otp-input"
+            required maxlength="1" type="number" id="o3" onkeyup="alter_box(this.id)" />
+          <input class="otp-box" style="background-color: rgba(122, 240, 255,0.1);" class="form-control otp-input"
+            required maxlength="1" type="number" id="o4" onkeyup="alter_box(this.id)" />
+          <input class="otp-box" style="background-color: rgba(122, 240, 255,0.1);" class="form-control otp-input"
+            required maxlength="1" type="number" id="o5" onkeyup="alter_box(this.id)" />
+        </div>
+        <p class="para mt-0">Not Received OTP yet? <a href="#">Resend Now</a></p>
+        <div class="container text-center">
+          <button type="submit" id="proceed" class="btn btn-primary mt-3 px-5 py-3 custom-btn">
+            <!-- <a style="text-decoration:none; color : white;" href="#">Activate Account</a> -->
+            Activate account
+          </button>
+        </div>
+        <p class="para mt-2"> <a href="/register">Want to go back?</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- OTP End -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="/static/user_verification/script.js"></script>
+</body>
+
+</html>

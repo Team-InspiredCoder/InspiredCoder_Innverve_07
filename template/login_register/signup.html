@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="static/login_register/style.css" />
+    <title>New User Registration</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">
+          <img src="static/assets/logo.png" alt="" />
+        </a>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-around align-items-center mt-5 signup"
+    >
+      <form class="row g-3">
+        
+        <h2 class="display-7">Create Your Account Here</h2>
+        <p class="para mt-0">Already Have Account? <a href="#" class="sign-in-btn"> Sign in</a></p>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input id="firstName" type="text" class="form-control input-box" />
+            <label for="firstName" class="form-label">First Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input id="lastName" type="text" class="form-control input-box" />
+            <label for="lastName" class="form-label">Last Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input id="mobileNumber" type="text" class="form-control input-box" />
+            <label for="mobileNumber" class="form-label">Mobile Number</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select id="inputOccupation" class="form-select input-box">
+              <option selected>Student</option>
+              <option>Software Developer</option>
+              <option>Teacher or Professor</option>
+              <option>Graduate</option>
+              <option>Other</option>
+            </select>
+            <label for="inputOccupation" class="form-label">Occupation</label>
+          </div>
+        </div>
+        <div class="col-md12">
+          <div class="form-floating">
+            <input type="email" id="email" class="form-control input-box" />
+            <small id="emailHelp" class="text-danger">
+                Enter Valid Email
+              </small>
+            <label for="emailID" class="form-label">Email ID</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select id="gender" class="form-select input-box">
+              <option selected>Male</option>
+              <option>Female</option>
+              <option>Others</option>
+            </select>
+            <label for="gender" class="form-label">Occupation</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="password" id="password"  class="form-control input-box" required />
+            <small id="passwordHelp" class="text-danger">
+                Must be 8-20 characters long.
+              </small>
+            <label for="password" class="form-label">Password</label>
+          </div>
+        </div>
+        <button type="button" id="proceed" class="btn btn-primary px-4 py-3 custom-btn">
+          Proceed
+          <!-- <a href="/verify" style="text-decoration: none; color: white;">
+          </a> -->
+        </button>
+      </form>
+      <div class="picture-container">
+        <div class="picture">
+          <img
+            src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"
+            title=""
+          />
+          <div id="file-input-wrapper">
+          </div>
+          <input type="file" text=" " id="wizard-picture" class="" />
+        </div>
+
+        <h6 class="profile-add mt-3">Add Profile Picture</h6>
+      </div>
+    </div>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="static/login_register/script.js"></script>
+  </body>
+</html>
