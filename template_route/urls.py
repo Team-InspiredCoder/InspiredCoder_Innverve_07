@@ -13,5 +13,6 @@ urlpatterns = [
 
     path('interview-preview', interviewPreview, name="interview-preview"),
     path('interview-screen', interviewScreen, name="interview-screen"),
+    path('generate-pdf', generate_pdf, name="generate-pdf"),
 ]
 

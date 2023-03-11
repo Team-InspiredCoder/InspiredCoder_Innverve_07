@@ -1,6 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      *, html{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.main-c {
+    border-radius: 10px;
+    width: 100%;
+    height: 96vh;
+    /* background: #473764; */
+}
+.top {
+    background: #473764;
+    border-radius: 5px;
+    padding: 40px;
+}
+.profile-box > img{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+.content {
+    margin-left: 50px !important;
+    color: #707070;
+}
+
+.custom-m {
+    margin-left: 30px;
+    font-size: 16px;
+}
+.custom-btn {
+    border-radius: 50px !important;
+    padding: 12px 45px !important;
+}
+.h3-custom {
+    margin: 0px 30px;
+    margin-right: 80px;
+    font-size: 24px;
+}
+
+.right-box {
+    width: 100% !important;
+    height: 100%;
+    margin-left: 20px;
+    border-radius: 15px;
+    background: #B393B8;
+}
+
+.bottom {
+    margin-top: 20px;
+    border: 2px #473764;
+    border-style: dashed;
+    padding: 20px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.fields {
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.stats {
+    display: inline-block;
+    background: #B393B8;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 10 !important;
+}
+
+.custom-margin {
+    margin-bottom: 20px !important;
+}
+
+.pro > img {
+    height: 200px;
+    width: auto;
+}
+
+    </style>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,8 +101,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="report.css" />
-    <link rel="stylesheet" href="/Login and Registration/style.css" />
+    <link rel="stylesheet" href="{{path}}/static/Report/report.css" />
+    <link rel="stylesheet" href="{{path}}/static/login_register/style.css" />
     <title>Profile</title>
   </head>
 
@@ -24,17 +112,16 @@
         <div class="top d-flex justify-content-between align-items-center">
             <div class="left">
                 <h1 class="display-7 text-light mb-3">Report</h1>
-                <h4 class="display-7 text-light">Name: Nilesh Gawli</h4>
-                <h4 class="display-7 text-light custom-margin">Mobile No. 8369174779</h4>
+                <h4 class="display-7 text-light">{{data.full_name}}</h4>
+                <h4 class="display-7 text-light custom-margin">{{data.mobile_no}}</h4>
                 <div class="stats">
-                      <h4 class="score text-light">Score: 99.00%</h4>
-                      <h4 class="confidence text-light">Confidence: 90.40%</h4>
-                      <h4 class="result text-light">Result: 95.10%</h4>
+                      <h4 class="score text-light">{{data.avg_score}}</h4>
+                      <h4 class="confidence text-light">{{data.avg_confidence}}</h4>
             </div>
           </div>
           <div class="pro">
-              <img src="/assets/nilesh.jpeg" alt="">
-              <div class="date text-light mt-2">Date: 10-03-2023</div>
+              <!-- <img src="/assets/nilesh.jpeg" alt=""> -->
+              <div class="date text-light mt-2">{{data.date}}</div>
           </div>
         </div>
         <div
@@ -150,6 +237,9 @@
       integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
       crossorigin="anonymous"
     ></script>
-    <script src="/Login and Registration/OTP/script.js"></script>
+    <script src="{{path}}/static/login_register/script.js"></script>
   </body>
+  <script>
+    // window.print()
+  </script>
 </html>

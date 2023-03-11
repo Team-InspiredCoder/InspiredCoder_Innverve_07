@@ -142,7 +142,7 @@ class Login(APIView):
                     print('updated_coin_val:',updated_coin_val)
                     coin_model_obj.value = updated_coin_val
                     coin_model_obj.save()
-                    # pass
+                    # pass  
 
                 coin_data = getCoin(user)
                 print("coin_data",coin_data)

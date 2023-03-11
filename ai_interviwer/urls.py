@@ -38,6 +38,7 @@ urlpatterns = [
     path('api/v1/interview/', include('interview.urls')),
     path('api/v1/gamification/', include('gamification.urls')),
     path('api/v1/user_profile/', include('user_profile.urls')),
+    path('api/v1/report/', include('report.urls')),
 
     # auth token urls
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
