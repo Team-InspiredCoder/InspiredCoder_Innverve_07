@@ -29,13 +29,12 @@ var tcount = 0;
 const average = list => list.reduce((prev, curr) => prev + curr) / list.length;
 
 videoList = ["/static/im/videos/first_question.mp4", "/static/im/videos/second_question.mp4", "/static/im/videos/third_question.mp4", "/static/im/videos/fourth_question.mp4", "/static/im/videos/fifth_question.mp4", "/static/im/videos/six_question.mp4", "/static/im/videos/seventh_question.mp4", "/static/im/videos/nine_question.mp4", "/static/im/videos/ten_question.mp4"];
-user_answer = [];
-user_confidence = [];
+var user_answer = "";
+var user_confidence = "";
 temp_confidence = [];
 
 var question_count = -1;
 var current_user_answer = "";
-
 
 // speech recognition config
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
@@ -65,13 +64,14 @@ function askNextQuetion() {
         avgc = average(temp_confidence);
     }
 
-    user_answer.push(current_user_answer);
-    user_confidence.push(avgc);
+    user_answer = `${user_answer} *** ${current_user_answer}`;
+    user_confidence = `${user_confidence} *** ${avgc}`;
     temp_confidence = [];
     current_user_answer = "";
     question_count = question_count + 1;
 
-    if (question_count == 8) {
+    console.log("\nquestion_count :: " + question_count);
+    if (question_count >= 7) {
         endInterview();
     }
 
@@ -146,7 +146,7 @@ async function runSpeechRecognition() {
             var transcript = event.results[current][0].transcript;
             var confidence = event.results[current][0].confidence;
 
-            current_user_answer = `${current_user_answer}, ${transcript}`
+            current_user_answer = `${current_user_answer}. ${transcript}`
             temp_confidence.push(confidence);
 
             console.log("\nResult :: " + JSON.stringify(event.results));
@@ -189,6 +189,7 @@ function mic_toggle() {
 
 
 $("#timer_div").fadeOut(1);
+// $("#interview_end_div").fadeOut(1);
 
 
 function camera_toggle() {
@@ -286,7 +287,16 @@ function caption_toggle() {
 
 function endInterview() {
 
+    recognition.stop()
+    closing_camera();
+    $("#interview_end_div").css('visibility', 'visible');
+    var vid = document.getElementById("MainVideo");
+    $("#MainVideo").removeAttr("loop");
+    vid.pause();
+
     var api_domain = "http://127.0.0.1:8000/api/v1"
+
+
 
     var fdata = {
         "user_answer": user_answer,

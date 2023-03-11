@@ -298,5 +298,20 @@ button {
     bottom: 25px;
 }
 
+.interview_end_div {
+    background-color: grey;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 14;
+    position: absolute;
+    flex-direction: column;
+}
+
+
+
+
 
 
