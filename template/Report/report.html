@@ -137,14 +137,23 @@
               </tr>
             </thead>
             <tbody class="table">
-
-              {% for  %}
-              <tr>
+              
+              <!-- <tr>
                 <th scope="row">1</th>
                 <td>Define Function in C?</td>
                 <td>46%</td>
                 <td>80%</td>
+              </tr> -->
+
+
+              {% for i in rdata %}
+              <tr>
+                <th scope="row">{{i.sr}}</th>
+                <td>{{i.q}}</td>
+                <td>{{i.s}}</td>
+                <td>{{i.c}}</td>
               </tr>
+              {% endfor %}
 
 
             </tbody>
