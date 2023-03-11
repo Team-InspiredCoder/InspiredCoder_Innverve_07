@@ -84,6 +84,12 @@ def generate_pdf(request):
             'avg_score':'94.54','avg_confidence':'59.54%',
             
             # 'profile_picture_link':request.user.profile_picture
+
+            "question": ["question 1", "question 2", "question 3"],
+            "confidence": [90, 91, 92],
+
             }
+
+
     # temp, file_path = render_to_pdf(template_src,data,'invoice.pdf')
     return render(request,'Report/report.html',data)

@@ -284,7 +284,6 @@ button {
     min-height: 50px;
     min-width: 70px;
     position: absolute;
-    background-color: red;
     z-index: 12;
 }
 

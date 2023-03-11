@@ -28,7 +28,7 @@ $("#proceed").click(function () {
         console.log("Result :: " + result.data);
         
         localStorage.setItem("userData", result.data);
-        localStorage.setItem("authToken", result.authToken);
+        localStorage.setItem("authToken", result.authToken.access);
         localStorage.setItem("isUserLoggedIn", true);
 
         window.location = `/email-verified`

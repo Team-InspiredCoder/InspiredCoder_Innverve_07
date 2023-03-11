@@ -27,7 +27,7 @@ $(document).ready(function () {
             localStorage.setItem("isUserLoggedIn", null);
   
             localStorage.setItem("userData", result.data);
-            localStorage.setItem("authToken", result.authToken);
+            localStorage.setItem("authToken", result.authToken.access);
             localStorage.setItem("isUserLoggedIn", true);
           
             window.location = "/";
