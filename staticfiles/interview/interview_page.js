@@ -286,17 +286,20 @@ function caption_toggle() {
 
 function endInterview() {
 
-    var api_domain = "http://127.0.0.1:8000/api/v1"
-
+    
+    var api_domain = "http://127.0.0.1:8000/api/v1";
+    console.log("user_answer:",user_answer),
+    console.log("user_confidence:",user_confidence)
     var fdata = {
         "user_answer": user_answer,
         "user_confidence": user_confidence,
     }
-
+    console.log("AuthToken",localStorage.getItem('authToken'))
     $.ajax({
         url: `${api_domain}/report/generate-pdf`,
         type: "POST",
         headers:{'Authorization':"Bearer "+localStorage.getItem('authToken')},
+
         data: fdata,
 
         success: function (result) {
