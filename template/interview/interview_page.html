@@ -33,6 +33,19 @@
 
 
 <body>
+<h1></h1>
+
+<!-- interview start timer -->
+<div class="interview_start_timer">
+    <h1 id="show_countdown"></h1>
+</div>
+
+
+<div onclick="stopSpeech()" class="showDiv div111">
+</div>
+
+<div onclick="stopSpeech()" class="showDiv div222">
+</div>
 
 <audio id="myAudio" loop >
     <source src="#" type ="audio/mp3"></source>
@@ -53,10 +66,7 @@
         </div>
     </div>
 
-
-    {% csrf_token %}
-
-        <video id="web_cam" autoplay="" height="100%" width="100%" muted="" style="visibility:hidden;" ></video>
+        <video id="web_cam" autoplay="" height="100%" width="100%" muted="" style="visibility:visible;" ></video>
 
         <div id="caption_div">
             <h5 id="caption_text"></h5>
@@ -65,22 +75,23 @@
     <div class="main">
 
         <video width="100%" height="100%" id="MainVideo">
-            <source src="#" type="video/mp4">
+            <source src="/static/im/videos/intro.mp4" type="video/mp4">
         </video>
 
 
-        <canvas id="canvas" width="600px" height="400px"></canvas>
-
-
+        <canvas id="canvas" width="600px" height="400px" style="visibility: hidden;"></canvas>
 
         <!-- <br> -->
 
         <div class="buttons_div">
-            <span id="download_btn" class="material-icons" onclick="gotohome()">home</span>
+            <!-- <span id="download_btn" class="material-icons" onclick="gotohome()">home</span> -->
 
             <span id="mic_btn" class="material-icons" onclick="mic_toggle()">mic</span>
             <span id="camera_btn" class="material-icons" onclick="camera_toggle()">videocam</span>
-            <span id="end_meet_btn" class="material-icons" onclick="end_call()">call</span>
+            <a id="video_dnld_link" class="material-icons">
+                <span style="background-color: red;" id="asdfg" onclick="endInterview()" class="material-icons" >call</span>
+            </a>
+            <!-- <span id="end_meet_btn" class="material-icons" onclick="end_call()">call</span> -->
             <span id="caption_btn" class="material-icons" onclick="caption_toggle()">closed_caption</span>
 
 
@@ -174,6 +185,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 <script src="/static/interview/interview_page.js"></script>
 
