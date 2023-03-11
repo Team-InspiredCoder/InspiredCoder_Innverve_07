@@ -43,6 +43,14 @@ class GeneratePdf(APIView):
     authentication_classes = [] 
 
     def post(self,request):
+
+        user_ans =  request.data.get('user_answer')
+        user_con =  request.data.get('user_confidence')
+
+        Sample_Answer = list(user_ans.split('***'))
+        confidence_list = list(user_con.split('***'))
+
+
         list_of_Accuracy_of_answer = []
         Correct_Answer_list=[
             "A function is a group of statements that together perform a task. Every C program has at least one function, which is main(), and all the most trivial programs can define additional functions. You can divide up your code into separate functions. ",
@@ -62,9 +70,8 @@ class GeneratePdf(APIView):
                     "In C which function is used to take input from console?",#5
                     "Who Developed C Programming?",#6
                     "What is the use of main function?",#7
-                    #"What are Data Types in C?",#8
-                    "Define Operator and State it's types?",#9
-                    "what is the use of default keyword?"]#10
+                    "Define Operator and State it's types?",#8
+                    "what is the use of default keyword?"]#9
         
         Sample_Answer = ['Set of Instruction which perform particular task',
                         'to print the output on console',
@@ -86,23 +93,44 @@ class GeneratePdf(APIView):
             print("Accuracy::",Accuracy)
             list_of_Accuracy_of_answer.append(Accuracy)
         
-        for j in range(len(Sample_Answer)):
-            Accuracy=fuzz.ratio(Correct_Answer_list[j],Sample_Answer[j])
-            print("Accuracy::",Accuracy)
-            list_of_Accuracy_of_answer.append(Accuracy)
 
         confidence_list = [90,93,95,49,95,95,59,95,59]
         avg_score = sum(list_of_Accuracy_of_answer)/len(list_of_Accuracy_of_answer) ## need to do
         avg_confidence = sum(confidence_list)/len(confidence_list)
 
+
+       
+        res = []
+        print(len(list_of_Accuracy_of_answer))
+        print(len(Questions_list))
+        for i in range(len(list_of_Accuracy_of_answer)):
+            print(i)
+            temp = {
+                "sr": i+1,
+                "q": Questions_list[i],
+                "s": list_of_Accuracy_of_answer[i],
+                "c": confidence_list[i],
+            }
+
+            res.append(temp)
+
+
+
+
         data = {'full_name':custom_user.first_name + " " + custom_user.last_name,
                 'mobile_no':custom_user.mobile_number,'current_date':current_date,
                 'avg_score':avg_score,'avg_confidence':avg_confidence,
                 'profile_picture_link':custom_user.profile_picture,
-                
+                'rdata':res,
                 'path':settings.BASE_DIR}
         print(data)
         temp, file_path = render_to_pdf(template_src,data,f'invoice')
 
-        return JsonResponse({"msg":"Pdf generated Successfully"})
-    
+        # return JsonResponse({"msg":"Pdf generated Successfully"})
+        HttpResponse(
+        file_path,
+         headers={
+             "Content-Type": "application/vnd.ms-excel",
+             "Content-Disposition": 'attachment; filename="Report.pdf"',
+         },
+     )    

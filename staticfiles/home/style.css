@@ -114,6 +114,7 @@ text-align: center;
 color: #ffff;
 }
 
+
 .hamburger {
     display: none;
 }
@@ -321,6 +322,8 @@ h2 {
     margin: 10px;
     background-color: transparent;
     padding: 15px;
+    color: white;
+    font-size: 16px;
 }
 
 .msg {
