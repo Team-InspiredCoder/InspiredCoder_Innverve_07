@@ -1,0 +1,99 @@
+*,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.sidebar {
+  width: 25%;
+  height: 96vh;
+}
+.main-c {
+  border-radius: 10px;
+  width: 75%;
+  height: 96vh;
+  /* background: #473764; */
+}
+.top {
+  background: #473764;
+  border-radius: 5px;
+  padding: 40px;
+}
+.profile-box > img {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.content {
+  margin-left: 50px !important;
+  color: #707070;
+}
+
+.custom-m {
+  margin-left: 30px;
+  font-size: 16px;
+}
+.custom-btn {
+  border-radius: 50px !important;
+  padding: 12px 45px !important;
+}
+.outer-box {
+  height: 80vh;
+}
+
+.left-box {
+  width: 40% !important;
+  height: 100% !important;
+}
+
+.bottom {
+  border-radius: 15px;
+  background-color: white;
+}
+.bottom {
+  height: 60%;
+  margin-bottom: 20px;
+}
+.rec {
+  height: 45px !important;
+  width: auto;
+}
+
+.h3-custom {
+  margin: 0px 30px;
+  margin-right: 80px;
+  font-size: 24px;
+}
+
+.right-box {
+  width: 60% !important;
+  height: 100%;
+  margin-left: 20px;
+  border-radius: 15px;
+  background: #b393b8;
+}
+
+.bottom {
+  margin-top: 20px;
+  border: 2px #473764;
+  border-style: dashed;
+  padding: 20px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.fields {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Poppins";
+}
+
+.edit {
+    height: 30px;
+}
