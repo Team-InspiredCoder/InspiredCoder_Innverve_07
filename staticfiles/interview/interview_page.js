@@ -304,10 +304,12 @@ function endInterview() {
         "user_answer": user_answer,
         "user_confidence": user_confidence,
     }
-
+    console.log("AuthToken",localStorage.getItem('authToken'))
     $.ajax({
         url: `${api_domain}/report/generate-pdf`,
         type: "POST",
+        headers:{'Authorization':"Bearer "+localStorage.getItem('authToken')},
+
         data: fdata,
 
         success: function (result) {
