@@ -37,8 +37,8 @@ def render_to_pdf(template_src, context, file_name="invoice"):
         
 
 class GeneratePdf(APIView):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication] 
+    permission_classes = []
+    authentication_classes = [] 
 
     def post(self,request):  
         current_date = date.today()

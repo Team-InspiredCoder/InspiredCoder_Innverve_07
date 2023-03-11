@@ -4,24 +4,24 @@ from .access_decorators import *
 import pdfkit
 from datetime import date
 
-@un_authenticated_user
+# @un_authenticated_user
 def index(request):
 
     return render(request, 'home/index.html')
 
-@un_authenticated_user
+# @un_authenticated_user
 def register(request):
 
     return render(request, 'login_register/signup.html')
 
 
-@un_authenticated_user
+# @un_authenticated_user
 def login(request):
 
     return render(request, 'login_register/login.html')
 
 
-@un_authenticated_user
+# @un_authenticated_user
 def verifyEmail(request, action, email, name):
     
     data = {
@@ -35,7 +35,7 @@ def verifyEmail(request, action, email, name):
     return render(request, 'user_verification/otp.html', data)
 
 
-@un_authenticated_user
+# @un_authenticated_user
 def emailVerified(request):
 
     return render(request, 'user_verification/activate.html')

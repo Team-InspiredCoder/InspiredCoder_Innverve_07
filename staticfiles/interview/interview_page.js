@@ -296,6 +296,7 @@ function endInterview() {
     $.ajax({
         url: `${api_domain}/report/generate-pdf`,
         type: "POST",
+        headers:{'Authorization':"Bearer "+localStorage.getItem('authToken')},
         data: fdata,
 
         success: function (result) {
