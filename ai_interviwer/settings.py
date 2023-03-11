@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'accounts',
     'template_route',
     'interview',
-    'gamification'
+    'gamification',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
