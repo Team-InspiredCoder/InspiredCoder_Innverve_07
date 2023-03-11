@@ -2,6 +2,7 @@ from django.urls import path
 from accounts.views import *
 from interview.views import *
 from template_route.views import *
+from pdfkit import *
 
 
 urlpatterns = [
