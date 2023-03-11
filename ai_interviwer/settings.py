@@ -112,15 +112,15 @@ DATABASES = {
 
 # custom db config
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ai_bot_db',
-        'USER': 'postgres',
-        'PASSWORD': 'ds123',
-        'HOST': 'localhost'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ai_bot_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ds123',
+#         'HOST': 'localhost'
+#     }
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
