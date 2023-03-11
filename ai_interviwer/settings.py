@@ -112,26 +112,26 @@ WSGI_APPLICATION = 'ai_interviwer.wsgi.application'
 
 # custom db config
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'ai_bot_db',
-#         'USER': 'postgres',
-#         'PASSWORD': 'ds123',
-#         'HOST': 'localhost'
-#     }
-# }
-
-
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'innerve_ai_interviewer',
+        'NAME': 'ai_bot_db',
         'USER': 'postgres',
-        'PASSWORD': 'pass',
+        'PASSWORD': 'ds123',
         'HOST': 'localhost'
     }
 }
+
+
+# DATABASES = {
+#         'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'innerve_ai_interviewer',
+#         'USER': 'postgres',
+#         'PASSWORD': 'pass',
+#         'HOST': 'localhost'
+#     }
+# }
 
 
 

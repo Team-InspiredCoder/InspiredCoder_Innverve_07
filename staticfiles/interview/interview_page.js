@@ -293,8 +293,8 @@ function endInterview() {
     $(".interview_end_div").fadeIn();
     var vid = document.getElementById("MainVideo");
     $("#MainVideo").css('display', 'none')
-    $("#MainVideo").css('display', 'none')
-    vid.pause();
+    
+    vid.remove();
 
     var api_domain = "http://127.0.0.1:8000/api/v1"
 
