@@ -189,7 +189,7 @@ function mic_toggle() {
 
 
 $("#timer_div").fadeOut(1);
-// $("#interview_end_div").fadeOut(1);
+// $(".interview_end_div").fadeOut(1);
 
 
 function camera_toggle() {
@@ -284,14 +284,16 @@ function caption_toggle() {
     }
 }
 
+$(".interview_end_div").fadeOut();
 
 function endInterview() {
 
-    recognition.stop()
+    recognition.stop();
     closing_camera();
-    $("#interview_end_div").css('visibility', 'visible');
+    $(".interview_end_div").fadeIn();
     var vid = document.getElementById("MainVideo");
-    $("#MainVideo").removeAttr("loop");
+    $("#MainVideo").css('display', 'none')
+    $("#MainVideo").css('display', 'none')
     vid.pause();
 
     var api_domain = "http://127.0.0.1:8000/api/v1"

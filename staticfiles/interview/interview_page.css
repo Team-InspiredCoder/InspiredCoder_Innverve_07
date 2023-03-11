@@ -305,7 +305,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 14;
+    z-index: 18;
     position: absolute;
     flex-direction: column;
 }
