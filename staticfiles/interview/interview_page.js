@@ -1,26 +1,122 @@
-var tcount = 0;
+var countdown = 3;
 
-// const myInterval = setInterval(nextQuestionTrigger, 5000);
+const myInterval = setInterval(myTimer, 1000);
 
-
-function nextQuestionTrigger() {
-    console.log("\nNext Question Trigger !");
+function myTimer() {
+    document.getElementById("show_countdown").innerHTML = countdown;
+    countdown -= 1;
+    if (countdown <= 0) {
+        myStop();
+    }
 }
 
-// function stopTrigger() {
-//     clearInterval(myInterval);
-// }
+function myStop() {
+    clearInterval(myInterval);
+    $(".interview_start_timer").fadeOut();
+
+    // calling speech recognition
+    // runSpeechRecognition();
+    // uncomment
+    // recordScreen();
+
+    setTimeout(startInterview, 5000);
+
+}
 
 
-function runSpeechRecognition() {
+
+var tcount = 0;
+const average = list => list.reduce((prev, curr) => prev + curr) / list.length;
+
+videoList = ["/static/im/videos/first_question.mp4", "/static/im/videos/second_question.mp4", "/static/im/videos/third_question.mp4", "/static/im/videos/fourth_question.mp4", "/static/im/videos/fifth_question.mp4", "/static/im/videos/six_question.mp4", "/static/im/videos/seventh_question.mp4", "/static/im/videos/nine_question.mp4", "/static/im/videos/ten_question.mp4"];
+user_answer = [];
+user_confidence = [];
+temp_confidence = [];
+
+var question_count = -1;
+var current_user_answer = "";
+
+
+// speech recognition config
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+var recognition = new SpeechRecognition();
+recognition.continuous = true;
+recognition.interimResults = false;
+
+
+// let vid = document.getElementById("MainVideo");
+
+function startInterview() {
+    // playing intro video
+    var vid = document.getElementById("MainVideo");
+    vid.play();
+    runSpeechRecognition();
+}
+
+
+function askNextQuetion() {
+
+    var vid = document.getElementById("MainVideo");
+    $("#MainVideo").removeAttr("loop");
+    vid.pause();
+
+    var avgc = 0;
+    if (temp_confidence.length > 0) {
+        avgc = average(temp_confidence);
+    }
+
+    user_answer.push(current_user_answer);
+    user_confidence.push(avgc);
+    temp_confidence = [];
+    current_user_answer = "";
+    question_count = question_count + 1;
+
+    if (question_count == 8) {
+        endInterview();
+    }
+
+    // play next question
+    // vid.src = videoList[question_count];
+    // if (Questions_Counter == 8) {
+    //     vid.pause();
+    //     // end_call();
+
+    // }
+    document.getElementById("MainVideo").src = videoList[question_count];
+
+    vid.play();
+
+    // display expression video
+    runSpeechRecognition();
+    // showExpresessionVideo();
+
+
+    console.log("\nuser_answer_list :: " + user_answer);
+    console.log("\nuser_confidence_list :: " + user_confidence);
+
+};
+
+
+var MainVideo = document.getElementById("MainVideo");
+MainVideo.addEventListener('ended', showExpresessionVideo, false);
+
+function showExpresessionVideo(e) {
+
+    console.log("showing expression video!");
+    var vid = document.getElementById("MainVideo");
+    vid.pause();
+    document.getElementById("MainVideo").src = "/static/im/videos/Expression_vid.mp4";
+    $("#MainVideo").attr("loop");
+    vid.play();
+
+    console.log("Video is finished");
+    
+}
+
+
+async function runSpeechRecognition() {
 
     var prev_index = null;
-    var triggerEnable = true;
-
-    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-    var recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = false;
 
     recognition.onstart = function () {
         console.log("\nRecognition has started !");
@@ -30,7 +126,10 @@ function runSpeechRecognition() {
         console.log("\nRecognition has ended !");
         recognition.stop();
         tcount = 0;
-        recognition.start();
+
+        askNextQuetion();
+        //showExpresessionVideo();
+        // recognition.start();
     }
 
 
@@ -40,18 +139,15 @@ function runSpeechRecognition() {
 
         var current = event.resultIndex;
 
-        if (current == prev_index && triggerEnable) {
-            myInterval;
-            triggerEnable = false;
-        }
-
         if (current != prev_index) {
             // stopTrigger();
             prev_index = current;
-            triggerEnable = true;
 
             var transcript = event.results[current][0].transcript;
             var confidence = event.results[current][0].confidence;
+
+            current_user_answer = `${current_user_answer}, ${transcript}`
+            temp_confidence.push(confidence);
 
             console.log("\nResult :: " + JSON.stringify(event.results));
             console.log("\ntranscript :: " + transcript);
@@ -64,8 +160,152 @@ function runSpeechRecognition() {
 }
 
 
-// calling speech recognition
-runSpeechRecognition();
+function stopSpeech() {
+    recognition.stop();
+    askNextQuetion();
+    console.log("Moving to next Question");
+};
+
+
+
+function mic_toggle() {
+    console.log("mic toggle function !");
+    var btn_status = $("#mic_btn").text();
+    console.log("status :: " + btn_status)
+
+
+    if (btn_status == 'mic') {
+        $("#mic_btn").css('background-color', 'red');
+        $("#mic_btn").text('mic_off');
+
+    }
+    else {
+
+        $("#mic_btn").css('background-color', '#282828');
+        $("#mic_btn").text('mic');
+    }
+}
+
+
+
+$("#timer_div").fadeOut(1);
+
+
+function camera_toggle() {
+
+    console.log("camera toggle function !");
+    var btn_status = $("#camera_btn").text();
+    console.log("status :: " + btn_status)
+
+    if (btn_status == 'videocam') {
+        closing_camera()
+
+        //$("#timer_div").fadeIn(1);
+        startTimer(20);
+        $("#camera_btn").css('background-color', 'red');
+        $("#camera_btn").text('videocam_off');
+    }
+    else {
+        recordVideo();
+        //Web_Cam_fun();
+        $("#camera_btn").text('videocam');
+        $("#timer_div").fadeOut(1);
+        $("#camera_btn").css('background-color', '#282828');
+
+    }
+}
+
+
+var x;
+function startTimer(timer) {
+    $("#Timer").css('background-color', 'grey')
+    timer_var = timer;
+    clearInterval(x)
+    $("#Timer").text("")
+    $("#Timer").text(timer_var)
+    $("#timer_div").fadeIn(1);
+    x = setInterval(() => {
+        //$("#Timer").text(timer_var)
+        document.getElementById("Timer").innerHTML = timer_var
+        timer_var = timer_var - 1;
+        if (timer_var < 10) {
+            $("#Timer").css('background-color', 'red')
+        }
+        if (timer_var < -1) {
+            $("#timer_div").fadeOut(1);
+
+            clearInterval(x)
+            recordVideo();
+            // Web_Cam_fun();
+            $("#camera_btn").css('background-color', '#282828');
+            $("#camera_btn").text('videocam');
+        }
+    }, 1000)
+
+
+}
+
+
+function display_caption(display) {
+    if (display) {
+        console.log("In if of Display caption")
+        //Visible Caption Div
+        $("#caption_div").css("visibility", 'visible')
+
+    }
+    else {
+
+        $("#caption_div").css("visibility", 'hidden')
+        //hidden Caption Div
+    }
+
+}
+
+function caption_toggle() {
+    display = true
+    console.log("caption toggle function !");
+    var btn_status = $("#caption_btn").text();
+    console.log("status :: " + btn_status)
+
+
+    if (btn_status == 'closed_caption') {
+        $("#caption_btn").css('background-color', 'red');
+        $("#caption_btn").text('closed_caption_disabled');
+        //recognition.stop()//For Debugging
+
+        display_caption(false)
+
+    }
+    else {
+        display_caption(true)
+        $("#caption_btn").css('background-color', '#282828');
+        $("#caption_btn").text('closed_caption');
+    }
+}
+
+
+function endInterview() {
+
+    var api_domain = "http://127.0.0.1:8000/api/v1"
+
+    var fdata = {
+        "user_answer": user_answer,
+        "user_confidence": user_confidence,
+    }
+
+    $.ajax({
+        url: `${api_domain}/report/generate-pdf`,
+        type: "POST",
+        data: fdata,
+
+        success: function (result) {
+            console.log("Result :: " + result.data);
+        }
+    });
+
+}
+
+
 
 
 
@@ -75,11 +315,11 @@ runSpeechRecognition();
 // *************************** Video *****************************
 
 
-let video = document.getElementById("video_element");
+// let video = document.getElementById("video_element");
 let model;
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext("2d")
-let cls_cam;
+// let cls_cam;
 let shouldStop = false;
 function closing_camera() {
     shouldStop = true;
@@ -90,11 +330,12 @@ function closing_camera() {
 
     // Tracks are returned as an array, so if you know you only have one, you can stop it with:
     tracks[0].stop();
+    $("#main_popup").fadeOut();
     // Or stop all like so:
     tracks.forEach(track => track.stop())
 
 
-    cls_cam.stop();
+    // cls_cam.stop();
 
 }
 
@@ -199,7 +440,7 @@ const handleRecord = function ({ stream, mimeType }) {
     let recordedChunks = [];
     stopped = false;
     const mediaRecorder = new MediaRecorder(stream);
-    cls_cam = mediaRecorder;
+    // cls_cam = mediaRecorder;
 
     mediaRecorder.ondataavailable = function (e) {
         if (e.data.size > 0) {
@@ -253,7 +494,7 @@ function check_face_probability(face_probability) {
 }
 
 Web_Cam_fun()
-recordScreen()
+// recordScreen()
 function Web_Cam_fun() {
 
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
@@ -270,8 +511,8 @@ function Web_Cam_fun() {
     });
 }
 
-const downloadLink = document.getElementById('end_meet_btn');
-document.getElementById("end_meet_btn").onclick = function () {
+const downloadLink = document.getElementById('video_dnld_link');
+document.getElementById("video_dnld_link").onclick = function () {
     shouldStop = true;
     closing_camera();
     MediaRecorder_new.stop();

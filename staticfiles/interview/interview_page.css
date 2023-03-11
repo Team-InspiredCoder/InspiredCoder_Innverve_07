@@ -167,11 +167,12 @@ body {
 }
 
 #end_meet_btn {
-    background-color: green;
+    background-color: red !important;
     padding-left: 2%;
     padding-right: 2%;
     display: flex;
     vertical-align: middle;
+    height: 30px;
 }
 
 #end_meet_btn:hover {
@@ -259,5 +260,44 @@ button {
 .show {
     display:block;
 }
+
+
+
+
+.interview_start_timer {
+    background-color: grey;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 14;
+    position: absolute;
+}
+
+#show_countdown {
+    color: white;
+}
+
+
+.showDiv {
+    min-height: 50px;
+    min-width: 70px;
+    position: absolute;
+    background-color: red;
+    z-index: 12;
+}
+
+
+.div111 {
+    right: 10px;
+    bottom: 25px;
+}
+
+.div222 {
+    left: 10px;
+    bottom: 25px;
+}
+
 
 
